@@ -27,6 +27,7 @@ js toolkit for interacting with schnorr sigantures on bitcoin. specifically for 
 5: "mky1tb7m19whMLG1sTQLXiGdnJwmi8Sioq"<br/>
 
 </details>
+
 - `window.jsGenerateTx(initialSecretKey, amount, fees, address1, unspentTxHash, outIndex)`
 <details>
 <summary>test input</summary>
