@@ -16,8 +16,12 @@ js toolkit for interacting with schnorr sigantures on bitcoin. specifically for 
 - open your browser, navigate to: http://localhost:3001/
 - open dev tools
 - `window.jsGenerateKeys()`
-- <details>
-  <summary>output</summary>
+- `window.jsGenerateTx(initialSecretKey, amount, fees, address1, unspentTxHash, outIndex)`
+
+<details>
+  <summary>window.jsGenerateKeys() output</summary>
+
+
 
 0: "5da42034f1dbd8de636745f2b225223c3dd90db1184478a984abb7c83955abda"<br/>
 1: "02fa2ab25ba7d179ddfa023705d26f1579609bd28c63dc47c7d69a9b2d804cee12"<br/>
@@ -26,13 +30,12 @@ js toolkit for interacting with schnorr sigantures on bitcoin. specifically for 
 4: "cQijAMM8dMKswFdc9pW5eMLAageD1ZtMbZpSXZ4Xsefp5yvvgaaz"<br/>
 5: "mky1tb7m19whMLG1sTQLXiGdnJwmi8Sioq"<br/>
 
-- </details>
+</details>
 
-- `window.jsGenerateTx(initialSecretKey, amount, fees, address1, unspentTxHash, outIndex)`
-- <details>
-- <summary>test input</summary>
-- "5da42034f1dbd8de636745f2b225223c3dd90db1184478a984abb7c83955abda",1,1,"mky1tb7m19whMLG1sTQLXiGdnJwmi8Sioq","c013cd25a9e73b678eb8c8a7304890beb7b29dd18864f0379a562335d3c37a8b",0)
-- </details>
+<details>
+<summary>window.jsGenerateTx() input</summary>
+"5da42034f1dbd8de636745f2b225223c3dd90db1184478a984abb7c83955abda",1,1,"mky1tb7m19whMLG1sTQLXiGdnJwmi8Sioq","c013cd25a9e73b678eb8c8a7304890beb7b29dd18864f0379a562335d3c37a8b",0)
+</details>
 
 ### Docs
 
