@@ -1,9 +1,9 @@
 <div align="center">
-![btcdouble](https://github.com/maceip/btc-keypair-doublespend/assets/804368/084d1020-ed89-4016-b058-74bad64fe2bc)
+<img src="static/btcdouble.png" width="200">
 
 
 
-[📖 Documentation][cmd]
+📖
 </div>
 
 
