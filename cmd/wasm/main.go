@@ -39,23 +39,22 @@ func signatureError(kind ErrorKind, desc string) Error {
 }
 
 func main() {
-	done := make(chan struct{}, 0)
+	done := make(chan struct{})
 
 	js.Global().Set("jsKeyGen", jsKeyGen())
 	js.Global().Set("jsPubGen", jsPubGen())
 	js.Global().Set("jsRandGen", jsRandGen())
+	js.Global().Set("jsHash", jsHash())
 	js.Global().Set("jsGenerateKeys", jsGenerateKeys())
 	js.Global().Set("jsGenerateSignatures", jsGenerateSignatures())
 	js.Global().Set("jsGenerateTx", jsGenerateTx())
 	js.Global().Set("jsDecodeWif", jsDecodeWif())
 
 	<-done
-
 }
 
 func jsDecodeWif() js.Func {
 	helperFunc := js.FuncOf(func(this js.Value, args []js.Value) interface{} {
-
 		result := make([]interface{}, 0)
 		wif_bytes_string := args[0].String()
 		wif, err := btcutil.DecodeWIF(wif_bytes_string)
@@ -64,14 +63,11 @@ func jsDecodeWif() js.Func {
 		}
 		result = append(result, wif.PrivKey.Key.String())
 		return result
-
 	})
 	return helperFunc
-
 }
 func jsGenerateSignatures() js.Func {
 	helperFunc := js.FuncOf(func(this js.Value, args []js.Value) interface{} {
-
 		result := make([]interface{}, 0)
 		sk_bytes_string := args[0].String()
 		private_rand_string := args[1].String()
@@ -100,15 +96,12 @@ func jsGenerateSignatures() js.Func {
 		result = append(result, js.ValueOf(s2.String()))
 
 		return js.ValueOf(result)
-
 	})
 	return helperFunc
-
 }
 
 func jsGenerateTx() js.Func {
 	helperFunc := js.FuncOf(func(this js.Value, args []js.Value) interface{} {
-
 		result := make([]interface{}, 0)
 
 		sender_sk_string := args[0].String()
@@ -129,6 +122,9 @@ func jsGenerateTx() js.Func {
 		out_index, _ := strconv.ParseUint(out_index_string, 16, 32)
 		unspent_tx_id, _ := chainhash.NewHashFromStr(unspent_tx_id_string)
 		recv_address, err := btcutil.DecodeAddress(recv_address_string, &chaincfg.TestNet3Params)
+		if err != nil {
+			return "err gen tx"
+		}
 
 		recTx := wire.NewMsgTx(wire.TxVersion)
 
@@ -145,6 +141,9 @@ func jsGenerateTx() js.Func {
 		recTx.AddTxOut(txOut)
 
 		senderAddress, err := btcutil.NewAddressPubKeyHash(btcutil.Hash160(sender_sk.PubKey().SerializeCompressed()), &chaincfg.TestNet3Params)
+		if err != nil {
+			return "err gen tx"
+		}
 		rcvScript, err := txscript.PayToAddrScript(senderAddress)
 		if err != nil {
 			return "err gen tx"
@@ -178,14 +177,12 @@ func jsGenerateTx() js.Func {
 		result = append(result, js.ValueOf(hash.String()))
 		result = append(result, js.ValueOf(hex.EncodeToString(buf.Bytes())))
 		return result
-
 	})
 	return helperFunc
 }
 
 func jsGenerateKeys() js.Func {
 	helperFunc := js.FuncOf(func(this js.Value, args []js.Value) interface{} {
-
 		result := make([]interface{}, 0)
 
 		secretKey, err := KeyGen(rand.Reader)
@@ -199,7 +196,6 @@ func jsGenerateKeys() js.Func {
 		if err != nil {
 			js.Global().Get("console").Call("log", "error")
 			return "randgen err"
-
 		}
 		wif, err := btcutil.NewWIF(secretKey, &chaincfg.TestNet3Params, true)
 		if err != nil {
@@ -225,7 +221,6 @@ func jsGenerateKeys() js.Func {
 		return js.ValueOf(result)
 	})
 	return helperFunc
-
 }
 
 func jsKeyGen() js.Func {
@@ -276,7 +271,6 @@ func jsRandGen() js.Func {
 		result = append(result, pk.Key.String())
 		result = append(result, j.X.String())
 		return js.ValueOf(result)
-
 	})
 	return helperFunc
 }
@@ -302,18 +296,18 @@ func jsHash() js.Func {
 	return helperFunc
 }
 
-// hash function is used for hashing the message input for all functions of the library.
-// Wrapper around sha256 in order to change only one function if the input hashing function is changed.
-func hash(message []byte) [32]byte {
-	return sha256.Sum256(message)
-}
-
 // Sign returns an extractable Schnorr signature for a message, signed with a private key and private randomness value.
 // Note that the Signature is only the second (S) part of the typical bitcoin signature, the first (R) can be deduced from
 // the public randomness value and the message.
 func Sign(sk *PrivateKey, privateRand *PrivateRand, message []byte) (*Signature, error) {
 	h := hash(message)
 	return signHash(sk, privateRand, h)
+}
+
+// hash function is used for hashing the message input for all functions of the library.
+// Wrapper around sha256 in order to change only one function if the input hashing function is changed.
+func hash(message []byte) [32]byte {
+	return sha256.Sum256(message)
 }
 
 // signHash returns an extractable Schnorr signature for a hashed message.
