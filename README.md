@@ -51,5 +51,5 @@ Liar, Liar, Coins on Fire!: Penalizing Equivocation By Loss of Bitcoins
 https://www.cs.purdue.edu/homes/akate/publications/Non-equivocationWithBitcoinPenalties.pdf
 
 
-JS Implementation here is build on:
+JS Implementation here is built from the go code via:
 https://docs.babylonchain.io/papers/btc_staking_litepaper.pdf
