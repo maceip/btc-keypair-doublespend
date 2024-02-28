@@ -18,17 +18,19 @@ js toolkit for interacting with schnorr sigantures on bitcoin. specifically for 
 - `window.jsGenerateKeys()`
 -<details>
 <summary>output</summary>
+
 0: "5da42034f1dbd8de636745f2b225223c3dd90db1184478a984abb7c83955abda"<br/>
 1: "02fa2ab25ba7d179ddfa023705d26f1579609bd28c63dc47c7d69a9b2d804cee12"<br/>
 2: "3260c8cff3150ee3a04b4272c470bcb4ea79aed3ba86b5340c3155f47422f29a"<br/>
 3: "11f853050ca7095201d2def6189acd0074e7979bf86a64384fc1e5229765027e"<br/>
 4: "cQijAMM8dMKswFdc9pW5eMLAageD1ZtMbZpSXZ4Xsefp5yvvgaaz"<br/>
 5: "mky1tb7m19whMLG1sTQLXiGdnJwmi8Sioq"<br/>
+
 </details>
 - `window.jsGenerateTx(initialSecretKey, amount, fees, address1, unspentTxHash, outIndex)`
 -<details>
 <summary>test input</summary>
-"5da42034f1dbd8de636745f2b225223c3dd90db1184478a984abb7c83955abda",1,1,"mky1tb7m19whMLG1sTQLXiGdnJwmi8Sioq","c013cd25a9e73b678eb8c8a7304890beb7b29dd18864f0379a562335d3c37a8b",0)`
+"5da42034f1dbd8de636745f2b225223c3dd90db1184478a984abb7c83955abda",1,1,"mky1tb7m19whMLG1sTQLXiGdnJwmi8Sioq","c013cd25a9e73b678eb8c8a7304890beb7b29dd18864f0379a562335d3c37a8b",0)
 </details>
 
 ### Docs
