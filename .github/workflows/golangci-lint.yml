@@ -1,4 +1,7 @@
 name: golangci-lint
+env:
+  GOOS: js
+  GOARCH: wasm
 on:
   push:
     branches:
