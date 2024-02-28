@@ -1,9 +1,11 @@
 <div align="center">
-![2557eb3d-2480-4c2f-b0b9-a26f926ec084](https://github.com/maceip/btc-keypair-doublespend/assets/804368/342ef4cc-a52d-41e3-a4db-e7b4ddf8038e)
+![btcdouble](https://github.com/maceip/btc-keypair-doublespend/assets/804368/084d1020-ed89-4016-b058-74bad64fe2bc)
+
 
 
 [📖 Documentation][cmd]
 </div>
+
 
 js toolkit for interacting with schnorr sigantures on bitcoin. specifically for testing keys that reveal their secret when more than one signature is created.
 
