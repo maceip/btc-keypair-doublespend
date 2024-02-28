@@ -16,7 +16,7 @@ js toolkit for interacting with schnorr sigantures on bitcoin. specifically for 
 - open your browser, navigate to: http://localhost:3001/
 - open dev tools
 - `window.jsGenerateKeys()`
--<details>
+<details>
 <summary>output</summary>
 
 0: "5da42034f1dbd8de636745f2b225223c3dd90db1184478a984abb7c83955abda"<br/>
@@ -28,7 +28,7 @@ js toolkit for interacting with schnorr sigantures on bitcoin. specifically for 
 
 </details>
 - `window.jsGenerateTx(initialSecretKey, amount, fees, address1, unspentTxHash, outIndex)`
--<details>
+<details>
 <summary>test input</summary>
 "5da42034f1dbd8de636745f2b225223c3dd90db1184478a984abb7c83955abda",1,1,"mky1tb7m19whMLG1sTQLXiGdnJwmi8Sioq","c013cd25a9e73b678eb8c8a7304890beb7b29dd18864f0379a562335d3c37a8b",0)
 </details>
